@@ -1,0 +1,17 @@
+
+.DS_STORE
+retro-contest/
+
+*logs/
+
+*.pyc
+*.swp
+*.tmp
+*.json
+*.sql
+*.sqlite
+*.db
+*.log
+*.info
+*.bkp
+

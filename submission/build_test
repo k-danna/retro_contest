@@ -1,0 +1,19 @@
+#!/bin/bash
+
+export DOCKER_REGISTRY=retrocontesteumkiawrtpbgdjyv.azurecr.io
+
+#echo '[*] logging in'
+#docker login $DOCKER_REGISTRY --username retrocontesteumkiawrtpbgdjyv --password LLNdx8njVr0yYDqGSgmyIVb6a7/lM9xe
+
+echo '[*] building'
+docker build -f submission.docker -t $DOCKER_REGISTRY/whatisdata_submission:v1 .
+
+
+echo '[*] pulling env'
+docker pull openai/retro-env
+docker tag openai/retro-env remote-env
+
+echo '[*] testing locally'
+retro-contest run --agent $DOCKER_REGISTRY/whatisdata_submission:v1 --results-dir results --no-nv --use-host-data SonicTheHedgehog-Genesis GreenHillZone.Act1
+
+
